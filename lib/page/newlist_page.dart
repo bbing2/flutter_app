@@ -33,14 +33,14 @@ class _NewListPageState extends State<NewListPage> {
     super.initState();
   }
 
-  final _controller_q = TextEditingController();
-  final _controller_a = TextEditingController();
+  final controller_q = TextEditingController();
+  final controller_a = TextEditingController();
 
   void saveNewList() {
     setState(() {
-      db.vocaList.add([_controller_q.text]);
-      _controller_q.clear();
-      _controller_a.clear();
+      db.vocaList.add([controller_q.text]);
+      controller_q.clear();
+      controller_a.clear();
     });
     Navigator.of(context).pop();
     db.updateData();
@@ -51,8 +51,8 @@ class _NewListPageState extends State<NewListPage> {
       context: context,
       builder: (context) {
         return DialogBox(
-          controller_a: _controller_a,
-          controller_q: _controller_q,
+          controller_a: controller_a,
+          controller_q: controller_q,
           onSave: saveNewList,
           onCancel: () => Navigator.of(context).pop(),
         );
@@ -82,7 +82,11 @@ class _NewListPageState extends State<NewListPage> {
             onPressed: (){
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (BuildContext context){
-                    return StudyPage();
+                    return StudyPage(
+                      question: controller_q,
+                      answer: controller_a,
+
+                    );
                   }
                   )
               );

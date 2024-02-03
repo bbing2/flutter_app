@@ -13,7 +13,7 @@ class VocaDatabase {
 
   void createInitialData() {
     vocaList = [
-      ['create new list', false]
+      ['단어','뜻'],
     ];
   }
 

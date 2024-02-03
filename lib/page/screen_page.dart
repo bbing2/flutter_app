@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newvoca/page/study_page.dart';
 
+import '../model/voca_database.dart';
 import 'newlist_page.dart';
 
 class ScreenPage extends StatefulWidget {
@@ -11,6 +12,7 @@ class ScreenPage extends StatefulWidget {
 }
 
 class _ScreenPageState extends State<ScreenPage> {
+  VocaDatabase db = VocaDatabase();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,7 +75,11 @@ class _ScreenPageState extends State<ScreenPage> {
               onPressed: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context){
-                      return StudyPage();
+                      return StudyPage(
+                        question: db.vocaList[0],
+                        answer: db.vocaList[1],
+
+                      );
                     }
                     )
                 );
