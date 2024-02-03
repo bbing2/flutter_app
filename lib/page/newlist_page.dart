@@ -38,7 +38,7 @@ class _NewListPageState extends State<NewListPage> {
 
   void saveNewList() {
     setState(() {
-      db.vocaList.add([controller_q.text]);
+      db.vocaList.add([controller_q.text,controller_a.text]);
       controller_q.clear();
       controller_a.clear();
     });

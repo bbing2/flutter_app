@@ -19,7 +19,7 @@ class StudyPage extends StatelessWidget {
     db.loadData();
     double _witdh = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height / 4;
-    //int currentIndex = 0;
+    int currentIndex = 0;
     return Scaffold(
       backgroundColor: Colors.green[200],
       appBar: AppBar(
@@ -44,22 +44,24 @@ class StudyPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
             Container(
               width: _witdh,
               height: _height,
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
-              child: Text(db.vocaList[0][0]),
+              child: Text(db.vocaList[currentIndex][0]),
             ),
             SizedBox(
               height: 50,
             ),
+
             Container(
               width: _witdh,
               height: _height,
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
-              child: Text(db.vocaList[0][0]),
+              child: Text(db.vocaList[currentIndex][1]),
             ),
             SizedBox(
               height: 50,
