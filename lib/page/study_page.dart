@@ -1,23 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:newvoca/model/voca_database.dart';
 
-class StudyPage extends StatelessWidget {
+class StudyPage extends StatefulWidget {
 
   final question;
   final answer;
 
   const StudyPage({
-    super.key,
+    Key? key,
     required this.question,
     required this.answer,
 
   });
 
   @override
+  State<StudyPage> createState() => _StudyPageState();
+}
+
+class _StudyPageState extends State<StudyPage> {
+
+
+  @override
   Widget build(BuildContext context) {
+
+
+
     VocaDatabase db = VocaDatabase();
     db.loadData();
-    double _witdh = MediaQuery.of(context).size.width;
+    double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height / 4;
     int currentIndex = 0;
     return Scaffold(
@@ -34,7 +44,7 @@ class StudyPage extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).pop();
-            }, //복수선택 팝업창 띄우기
+            },
             icon: Icon(Icons.arrow_back),
           ),
         ],
@@ -46,7 +56,7 @@ class StudyPage extends StatelessWidget {
           children: [
 
             Container(
-              width: _witdh,
+              width: _width,
               height: _height,
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
@@ -57,7 +67,7 @@ class StudyPage extends StatelessWidget {
             ),
 
             Container(
-              width: _witdh,
+              width: _width,
               height: _height,
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
@@ -70,13 +80,38 @@ class StudyPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (currentIndex == 0) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('이전 문제가 없습니다.'),
+                        ),
+                      );
+                    } else {
+                      setState(() {
+                        currentIndex -= 1;
+                      });
+
+                    }
+                  },
                   child: Text('이전문제'),
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.green),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (currentIndex == db.vocaList.length-1 ) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('마지막 문제입니다.'),
+                        ),
+                      );
+                    } else {
+                      setState(() {
+                        currentIndex += 1;
+                      });
+                    }
+                  },
                   child: Text('다음문제'),
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.green),
@@ -89,3 +124,4 @@ class StudyPage extends StatelessWidget {
     );
   }
 }
+

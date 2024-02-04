@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:newvoca/page/study_page.dart';
 
 import '../model/voca_database.dart';
@@ -57,7 +58,7 @@ class _ScreenPageState extends State<ScreenPage> {
                     )
                 );
               },
-              child: Text('목록보기',
+              child: Text('생성하기',
                 style: TextStyle(
                     fontSize: 20.0
                 ),
@@ -73,18 +74,9 @@ class _ScreenPageState extends State<ScreenPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context){
-                      return StudyPage(
-                        question: db.vocaList[0],
-                        answer: db.vocaList[1],
-
-                      );
-                    }
-                    )
-                );
+                SystemNavigator.pop();
               },
-              child: Text('학습하기',
+              child: Text('종료하기',
                 style: TextStyle(
                     fontSize: 20.0
                 ),

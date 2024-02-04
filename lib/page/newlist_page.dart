@@ -38,7 +38,7 @@ class _NewListPageState extends State<NewListPage> {
 
   void saveNewList() {
     setState(() {
-      db.vocaList.add([controller_q.text,controller_a.text]);
+      db.vocaList.add([controller_q.text, controller_a.text]);
       controller_q.clear();
       controller_a.clear();
     });
@@ -79,17 +79,21 @@ class _NewListPageState extends State<NewListPage> {
         backgroundColor: Colors.green,
         actions: [
           ElevatedButton(
-            onPressed: (){
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context){
-                    return StudyPage(
-                      question: controller_q,
-                      answer: controller_a,
-
-                    );
-                  }
-                  )
-              );
+            onPressed: () {
+              if (db.vocaList.length < 1) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('단어를 생성하세요'),
+                  ),
+                );
+              } else
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (BuildContext context) {
+                  return StudyPage(
+                    question: controller_q,
+                    answer: controller_a,
+                  );
+                }));
             },
             child: Text('학습시작'),
             style: ElevatedButton.styleFrom(backgroundColor: Colors.green),

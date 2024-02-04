@@ -29,6 +29,7 @@ class DialogBox extends StatelessWidget {
                 border: OutlineInputBorder(),
                 hintText: "문제 입력",
               ),
+
             ),
             TextField(
               controller: controller_a,
