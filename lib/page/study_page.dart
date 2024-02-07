@@ -19,17 +19,27 @@ class StudyPage extends StatefulWidget {
 
 class _StudyPageState extends State<StudyPage> {
 
+ late VocaDatabase db;
+ late double _width;
+ late double _height;
+ int currentIndex = 0;
+
+ @override
+ void initState() {
+    // TODO: implement initState
+    super.initState();
+    db = VocaDatabase();
+    db.loadData();
+  }
+
 
   @override
   Widget build(BuildContext context) {
 
 
+     _width = MediaQuery.of(context).size.width;
+     _height = MediaQuery.of(context).size.height / 4;
 
-    VocaDatabase db = VocaDatabase();
-    db.loadData();
-    double _width = MediaQuery.of(context).size.width;
-    double _height = MediaQuery.of(context).size.height / 4;
-    int currentIndex = 0;
     return Scaffold(
       backgroundColor: Colors.green[200],
       appBar: AppBar(
