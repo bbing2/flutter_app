@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:newvoca/model/voca_database.dart';
 
 class StudyPage extends StatefulWidget {
-
   final question;
   final answer;
 
@@ -10,7 +9,6 @@ class StudyPage extends StatefulWidget {
     Key? key,
     required this.question,
     required this.answer,
-
   });
 
   @override
@@ -18,27 +16,24 @@ class StudyPage extends StatefulWidget {
 }
 
 class _StudyPageState extends State<StudyPage> {
+  late VocaDatabase db;
+  late double _width;
+  late double _height;
+  int currentIndex = 0;
+  bool isTouched = false;
 
- late VocaDatabase db;
- late double _width;
- late double _height;
- int currentIndex = 0;
-
- @override
- void initState() {
+  @override
+  void initState() {
     // TODO: implement initState
     super.initState();
     db = VocaDatabase();
     db.loadData();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
-     _width = MediaQuery.of(context).size.width;
-     _height = MediaQuery.of(context).size.height / 4;
+    _width = MediaQuery.of(context).size.width;
+    _height = MediaQuery.of(context).size.height / 4;
 
     return Scaffold(
       backgroundColor: Colors.green[200],
@@ -47,10 +42,6 @@ class _StudyPageState extends State<StudyPage> {
         automaticallyImplyLeading: false,
         title: Text('학습하기'),
         actions: [
-          IconButton(
-            onPressed: () {}, //복수선택 팝업창 띄우기
-            icon: Icon(Icons.settings),
-          ),
           IconButton(
             onPressed: () {
               Navigator.of(context).pop();
@@ -64,24 +55,33 @@ class _StudyPageState extends State<StudyPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Container(
               width: _width,
               height: _height,
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
-              child: Text(db.vocaList[currentIndex][0]),
+              child: Center(
+                child: Text(db.vocaList[currentIndex][0]),
+              ),
             ),
             SizedBox(
               height: 50,
             ),
-
-            Container(
-              width: _width,
-              height: _height,
-              color: Colors.green,
-              padding: EdgeInsets.all(8.0),
-              child: Text(db.vocaList[currentIndex][1]),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isTouched = !isTouched;
+                });
+              },
+              child: Container(
+                width: _width,
+                height: _height,
+                color: Colors.green,
+                padding: EdgeInsets.all(8.0),
+                child: Center(
+                  child: Text(isTouched ? db.vocaList[currentIndex][1] : "?"),
+                ),
+              ),
             ),
             SizedBox(
               height: 50,
@@ -100,8 +100,8 @@ class _StudyPageState extends State<StudyPage> {
                     } else {
                       setState(() {
                         currentIndex -= 1;
+                        isTouched = false;
                       });
-
                     }
                   },
                   child: Text('이전문제'),
@@ -110,7 +110,7 @@ class _StudyPageState extends State<StudyPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (currentIndex == db.vocaList.length-1 ) {
+                    if (currentIndex == db.vocaList.length - 1) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('마지막 문제입니다.'),
@@ -119,6 +119,7 @@ class _StudyPageState extends State<StudyPage> {
                     } else {
                       setState(() {
                         currentIndex += 1;
+                        isTouched = false;
                       });
                     }
                   },
@@ -134,4 +135,3 @@ class _StudyPageState extends State<StudyPage> {
     );
   }
 }
-
