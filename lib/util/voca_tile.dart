@@ -24,6 +24,7 @@ class VocaTile extends StatelessWidget {
               icon: Icons.delete,
               backgroundColor: Colors.red,
               borderRadius: BorderRadius.circular(12),
+              label: '삭제하기',
             )
           ],
         ),

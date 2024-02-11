@@ -61,7 +61,12 @@ class _StudyPageState extends State<StudyPage> {
               color: Colors.green,
               padding: EdgeInsets.all(8.0),
               child: Center(
-                child: Text(db.vocaList[currentIndex][0]),
+                child: SingleChildScrollView(
+                  child: Text(
+                    db.vocaList[currentIndex][0],
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ),
               ),
             ),
             SizedBox(
@@ -79,7 +84,12 @@ class _StudyPageState extends State<StudyPage> {
                 color: Colors.green,
                 padding: EdgeInsets.all(8.0),
                 child: Center(
-                  child: Text(isTouched ? db.vocaList[currentIndex][1] : "?"),
+                  child: SingleChildScrollView(
+                    child: Text(
+                      isTouched ? db.vocaList[currentIndex][1] : "?",
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
                 ),
               ),
             ),
