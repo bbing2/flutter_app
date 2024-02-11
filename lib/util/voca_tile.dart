@@ -4,10 +4,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class VocaTile extends StatelessWidget {
   final String question;
   Function(BuildContext)? deleteFunction;
+  Function(BuildContext)? editFunction;
   VocaTile({
     super.key,
     required this.question,
     required this.deleteFunction,
+    required this.editFunction,
   });
 
   @override
@@ -25,6 +27,13 @@ class VocaTile extends StatelessWidget {
               backgroundColor: Colors.red,
               borderRadius: BorderRadius.circular(12),
               label: '삭제하기',
+            ),
+            SlidableAction(
+              onPressed: editFunction,
+              icon: Icons.edit,
+              backgroundColor: Colors.blue,
+              borderRadius: BorderRadius.circular(12),
+              label: '수정하기',
             )
           ],
         ),

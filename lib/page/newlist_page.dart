@@ -67,6 +67,35 @@ class _NewListPageState extends State<NewListPage> {
     db.updateData();
   }
 
+
+  void editList(int index, String newQuestion, String newAnswer) {
+    setState(() {
+      db.vocaList[index][0] = newQuestion;
+      db.vocaList[index][1] = newAnswer;
+    });
+    db.updateData();
+  }
+
+  void openEditDialog(int index) {
+    controller_q.text = db.vocaList[index][0];
+    controller_a.text = db.vocaList[index][1];
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          controller_a: controller_a,
+          controller_q: controller_q,
+          onSave: () {
+            editList(index, controller_q.text, controller_a.text);
+            Navigator.of(context).pop();
+          },
+          onCancel: () => Navigator.of(context).pop(),
+        );
+      },
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,6 +135,7 @@ class _NewListPageState extends State<NewListPage> {
           return VocaTile(
             question: db.vocaList[index][0],
             deleteFunction: (context) => deleteList(index),
+            editFunction:  (context) => openEditDialog(index),
           );
         },
       ),
