@@ -5,7 +5,7 @@ import '../model/voca_database.dart';
 import '../util/dialog_box.dart';
 import '../util/voca_tile.dart';
 
-//여기가 홈페이지 개념
+
 
 class NewListPage extends StatefulWidget {
   const NewListPage({super.key});

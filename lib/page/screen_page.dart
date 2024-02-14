@@ -23,7 +23,6 @@ class _ScreenPageState extends State<ScreenPage> {
           child: Column(
             children: [
               Container(
-                //color: Colors.red, //없애기
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
