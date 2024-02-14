@@ -27,6 +27,7 @@ class DialogBox extends StatelessWidget {
         child: Column(
           children: [
             TextField(
+
               controller: controller_q,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),

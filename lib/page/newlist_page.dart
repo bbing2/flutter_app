@@ -106,7 +106,7 @@ class _NewListPageState extends State<NewListPage> {
       backgroundColor: Colors.green[200],
       appBar: AppBar(
         title: Text(
-          'list',
+          '학습목록',
           style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.green,
