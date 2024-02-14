@@ -50,35 +50,13 @@ class _StudyPageState extends State<StudyPage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: _width,
-              height: _height,
-              color: Colors.green,
-              padding: EdgeInsets.all(8.0),
-              child: Center(
-                child: SingleChildScrollView(
-                  child: Text(
-                    db.vocaList[currentIndex][0],
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  isTouched = !isTouched;
-                });
-              },
-              child: Container(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
                 width: _width,
                 height: _height,
                 color: Colors.green,
@@ -86,60 +64,84 @@ class _StudyPageState extends State<StudyPage> {
                 child: Center(
                   child: SingleChildScrollView(
                     child: Text(
-                      isTouched ? db.vocaList[currentIndex][1] : "?",
+                      db.vocaList[currentIndex][0],
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    if (currentIndex == 0) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('이전 문제가 없습니다.'),
-                        ),
-                      );
-                    } else {
-                      setState(() {
-                        currentIndex -= 1;
-                        isTouched = false;
-                      });
-                    }
-                  },
-                  child: Text('이전문제'),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              SizedBox(
+                height: 50,
+              ),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isTouched = !isTouched;
+                  });
+                },
+                child: Container(
+                  width: _width,
+                  height: _height,
+                  color: Colors.green,
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: SingleChildScrollView(
+                      child: Text(
+                        isTouched ? db.vocaList[currentIndex][1] : "?",
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
+                  ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (currentIndex == db.vocaList.length - 1) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('마지막 문제입니다.'),
-                        ),
-                      );
-                    } else {
-                      setState(() {
-                        currentIndex += 1;
-                        isTouched = false;
-                      });
-                    }
-                  },
-                  child: Text('다음문제'),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                ),
-              ],
-            )
-          ],
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      if (currentIndex == 0) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('이전 문제가 없습니다.'),
+                          ),
+                        );
+                      } else {
+                        setState(() {
+                          currentIndex -= 1;
+                          isTouched = false;
+                        });
+                      }
+                    },
+                    child: Text('이전문제'),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (currentIndex == db.vocaList.length - 1) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('마지막 문제입니다.'),
+                          ),
+                        );
+                      } else {
+                        setState(() {
+                          currentIndex += 1;
+                          isTouched = false;
+                        });
+                      }
+                    },
+                    child: Text('다음문제'),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

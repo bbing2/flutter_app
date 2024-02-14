@@ -146,7 +146,7 @@ class _NewListPageState extends State<NewListPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: createNewList,
         child: Icon(Icons.add),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.lightGreen,
       ),
     );
   }
