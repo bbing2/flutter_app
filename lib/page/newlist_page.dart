@@ -47,6 +47,10 @@ class _NewListPageState extends State<NewListPage> {
   }
 
   void createNewList() {
+    setState(() {
+      controller_q.clear();
+      controller_a.clear();
+    });
     showDialog(
       context: context,
       builder: (context) {
