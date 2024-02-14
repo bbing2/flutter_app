@@ -17,6 +17,9 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
       backgroundColor: Colors.green,
       content: Container(
         color: Colors.green,
@@ -35,6 +38,7 @@ class DialogBox extends StatelessWidget {
               decoration: InputDecoration(
                   border: OutlineInputBorder(), hintText: "정답 입력"),
             ),
+            SizedBox(height: 5,),
             //save + cancel buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
