@@ -27,7 +27,7 @@ class _ScreenPageState extends State<ScreenPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        '나 만 의',
+                        '두 문 자',
                         style: TextStyle(
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,
