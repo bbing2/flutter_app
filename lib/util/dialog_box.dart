@@ -24,52 +24,62 @@ class DialogBox extends StatelessWidget {
       content: Container(
         color: Colors.green,
         height: 180,
-        child: Column(
-          children: [
-            TextField(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextField(
+                controller: controller_q,
+                onSubmitted: (_) {
+                FocusScope.of(context).nextFocus();
+              },
+                maxLines: null,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "문제 입력",
+                ),
 
-              controller: controller_q,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "문제 입력",
               ),
-            ),
-            TextField(
-              controller: controller_a,
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: "정답 입력"),
-            ),
-            SizedBox(height: 5,),
-            //save + cancel buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                //save button
-                MyButton(
-                    text: "저장",
-                    onPressed: () {
-                      if (controller_q.text.isEmpty ||
-                          controller_a.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('단어 또는 뜻이 비어 있습니다.'),
-                          ),
-                        );
-                      } else
-                        onSave();
-                    },
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                //cancel button
-                MyButton(
-                  text: "취소",
-                  onPressed: onCancel,
-                ),
-              ],
-            )
-          ],
+              TextField(
+                controller: controller_a,
+                onSubmitted: (_) {
+                  FocusScope.of(context).nextFocus();
+                },
+                maxLines: null,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(), hintText: "정답 입력"),
+              ),
+              SizedBox(height: 5,),
+              //save + cancel buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  //save button
+                  MyButton(
+                      text: "저장",
+                      onPressed: () {
+                        if (controller_q.text.isEmpty ||
+                            controller_a.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('단어 또는 뜻이 비어 있습니다.'),
+                            ),
+                          );
+                        } else
+                          onSave();
+                      },
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  //cancel button
+                  MyButton(
+                    text: "취소",
+                    onPressed: onCancel,
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
