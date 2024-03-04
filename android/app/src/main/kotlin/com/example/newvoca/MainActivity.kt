@@ -1,4 +1,4 @@
-package com.example.newvoca
+package firstapp.newvoca
 
 import io.flutter.embedding.android.FlutterActivity
 

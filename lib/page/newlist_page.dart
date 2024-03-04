@@ -113,7 +113,7 @@ class _NewListPageState extends State<NewListPage> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              if (db.vocaList.length < 1) {
+              if (db.vocaList.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('단어를 생성하세요'),
